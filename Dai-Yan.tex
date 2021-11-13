@@ -1,0 +1,828 @@
+% !TeX spellcheck = <none>
+\documentclass[11pt]{amsart}
+\usepackage{float}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{cases}
+\usepackage{mathrsfs,fancyhdr,dsfont,bbm}
+\usepackage{anysize}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{indentfirst}
+\usepackage{extarrows}
+\usepackage{enumerate}
+\usepackage{caption}
+\usepackage{mathrsfs}
+
+
+\pagestyle{plain}
+\renewcommand{\baselinestretch}{1.1}\setlength{\topmargin}{-1cm} \setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{24cm}
+
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+\newtheorem{claim}{Claim}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}
+\newtheorem{cor}{Corollary}[section]
+
+\numberwithin{equation}{section}
+
+
+\usepackage{color}
+%\usepackage{pstricks}
+%\usepackage{pst-node}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\renewcommand{\refname}{References}
+
+\usepackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL,OR]{\footnotesize \thepage}
+\fancyhead[EC]{\footnotesize D. DAI AND L. YAN}
+\fancyhead[OC]{\footnotesize\uppercase \title{ Law of Large Numbers for the Linear Self-interacting Diffusion Driven by $\alpha$-Stable Motion}}
+\fancyfoot{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{Law of Large Numbers for the Linear Self-interacting Diffusion Driven by $\alpha$-Stable Motion}
+
+
+\footnote[0]{${}^\dag$ddai@ucsd.edu, ${}^{\S}$litan-yan@hotmail.com (Corresponding Author)}
+
+\date{}
+
+\author[D. Dai and L. Yan]{Dehao Dai$^{1,\dag}$ and Litan Yan${}^{2,\S}$}
+
+\keywords{$\alpha$-stable motion, self-interacting diffusion, stable integral, law of large numbers, almost surely convergence, convergence in $L^p$ with $0<p<\alpha$}
+
+\maketitle
+
+\begin{center}
+{\footnotesize {\it {${}^1$Department of Mathematics, College of Science, Donghua University, 2999 North Renmin Rd.\\Songjiang, Shanghai 201620, P.R. China\\
+${}^2$Department of Statistics, College of Science, Donghua University, 2999 North Renmin Rd.\\Songjiang, Shanghai 201620, P.R. China}}}
+\end{center}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract}
+In this paper, we discuss the linear self-interacting diffusion driven by $\alpha$-stable motion of the form
+$$
+X_t^\alpha= M_t^\alpha-\theta\int_0^t\int_0^s (X_t^\alpha-X_s^\alpha)ds dt+\nu t,\quad t\geq 0,
+$$
+where $\theta \neq 0$, $\nu \in \mathbb{R}$ and $M^\alpha_t$ is an $\alpha$-stable motion on $\mathbb{R} (0<\alpha<2)$ with L\'{e}vy symbol $\varphi(u)=|u|^\alpha$. The process is a continuous analogue of the self-attracting diffusion (see M. Cranston and Y. Le Jan\cite{Cranston}). The main purpose of this paper is to introduce some laws of large numbers associated with the process with $1<\alpha<2$. When $\theta>0$, we show that the convergence 
+$$
+\quad \frac{1}{T}\int_0^T Y_t^\alpha dt\longrightarrow\frac{\nu}{\theta},\quad \frac{1}{T^{4-\frac{2}{\alpha}}}\int_0^T Y_t^\alpha dt\longrightarrow0
+$$
+hold almost surely and in $L^p$ with $0<p<\alpha$, as $T$ tends to infinty, where $Y^\alpha_t=\int_0^t(X_t^\alpha-X_s^\alpha)ds$. On the other hand, when $\theta<0$, we have $\frac{1}{T}\int_0^T Y_t^\alpha dt\longrightarrow \infty$, as $T$ tends to infinity. Therefore, we show that $\Lambda_t^\alpha: = e^{\frac{1}{2}\theta t^2}Y_t^\alpha$ and $\Xi_t^\alpha :=te^{\frac{1}{2}\theta t^2}\int_0^t Y_t^\alpha dt$ converges almost surely and in $L^p$ with $0<p<\alpha$ to $\xi_\infty^\alpha-\frac{\nu}{\theta}$ and $\frac{1}{\theta}\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)$, as $t$ tends to infinity, respectively, where $\xi_\infty^\alpha=\int_0^\infty se^{\frac{1}{2}\theta s^2}dM_s^\alpha$.
+\end{abstract}
+
+\section{\textsc{Introduction}}
+In 1992, R. Durrett and L.C.G Rogers introduced a stochastic differential model for the shape of a growing polymer\cite{Durrett}. Under some conditions, they established the asymptotic behavior of solution of stochastic diﬀerential equation with the dependent path:
+\begin{equation}\label{sec1-eq1}
+X_t = B_t +\int_0^t \int_0^s f(X_s-X_u)duds
+\end{equation}
+where $B_t$ is a $d$-dimensional standard Brownian motion and $f$ is Lipschitz continuous. If $f(x)=g(x)x/ \|x\|$ and $g(x) \geq 0$, the solution $X_t$ is a continous analogue of a discrete process introduced by Diaconis and studied by Pemantle\cite{Pemantle}. The solution process $\{X_t\}$ corresponds to the end postion of the polymer at time $t$. Let $\mathscr{L}^X(t,x)$ be the local time of the solution process $X$. Therefore, we have 
+$$
+X_t = X_0 + B_t+\int_0^t ds \int_\mathbb{R}f(-x)\mathscr{L}^X(s,X_s+x)dx.
+$$
+for all $t\geq 0$. We may call this solution a Brownian motion interacting with its own passed trajectory, i.e., a \emph{self-interacting motion}. In 1995, Cranston and Le Jan\cite{Cranston} discussed self-attracting diffusions, and when $d=1$ the convergence of the following two cases are studied:
+\begin{enumerate}[(i)]
+  \item the linear interaction, i.e.$ f(x) = \theta x $, namely,
+  \begin{equation*}
+X_t=B_t-\theta\int_0^t\int_0^s(X_s-X_u)duds,\quad t\geq 0,
+  \end{equation*}
+  with $\theta>0$;
+  \item the constant interaction, i.e.$f(x) = \sigma \textbf{sgn}(x)$, where $\sigma >0$, namely,
+  \begin{equation*}
+X_t=B_t-\sigma\int_0^t\int_0^s \textbf{sgn}(X_s-X_u)duds,\quad t\geq 0.
+  \end{equation*}
+\end{enumerate}
+In general, the equation (\ref{sec1-eq1}) defines a self-interacting diffusion without any assumption on $f$. If $x \cdot f(x) \geq 0$(resp. $\leq 0$) for all $x \in \mathbb{R}^d$, in other words if it is more likely to stay away from (resp. stay close to) the position it has already reached before, we could describe it self-repelling (resp. self-attracting). In 2002, Bena\"{i}m \emph{ et al}\cite{Benaim} studied a self-interacting diffusions depending on the (convoluted) empirical measure $\{\mu_t,t\geq 0 \}$, as follows
+$$
+dX_t = \sqrt{2}dB_t - \bigg(\frac{1}{t}\int_0^t \nabla W(X_t - X_s)ds\bigg)dt,
+$$
+where $W$ is an interacting potential function. A great difference between these diffusions or Brownian polymers is whether the drift term is divided by $t$. More extended works can be refered in Bena\"{i}m \emph{et al.}\cite{Benaim}, Chambeu and Kurtzmann\cite{Chambeu}, Cranston and Mountford\cite{Cranston2}, Gan and Yan \cite{Gan}, Gauthier\cite{Gauthier}, Herrmann and Roynette\cite{Herrmann}, Herrmann and Scheutzow\cite{Herrmann2}, Kleptsyny and Kurtzmann\cite{Kleptsyny}, Mountford and Tarr\cite{Mountford}, Toth and Werner\cite{Werner}, Sun and Yan \emph{et al.}\cite{Yan,Yan2} and other references.
+
+As a natural extension inspired by Sun and Yan\cite{Yan2}, one can consider the stochastic diﬀerential equation driven by $\alpha$-stable motion of the form
+\begin{equation}\label{sec1-eq2}
+X_t^\alpha = M_t^\alpha + \int_0^t\int_0^s f(X_s^\alpha - X_r^\alpha) dr ds,
+\end{equation}
+with $X_0^\alpha = 0$, where $M_t^\alpha$ is an $\alpha$-stable L\'{e}vy process on $\mathbb{R}^d$ and $f$ is a Borel measurable function. It is simple to show that the equation mentioned above admits a unique strong solution if $f$ is Lipschitz continuous. On the other hand, for $f$ locally bounded, (\ref{sec1-eq2}) admits a unique weak solution. The solution is called the self-repelling (resp. self-attracting) diffusion driven by an $\alpha$-stable L\'{e}vy process, if $x \cdot f(x) \geq 0$ (resp. $\leq 0$) for all $x \in \mathbb{R}^d$.
+
+In this paper, we consider the law of large numbers for the linear case with jumps
+\begin{equation}\label{sec1-eq3}
+X_t^\alpha = M_t^\alpha -\theta \int_0^t \int_0^s (X_s^\alpha -X_t^\alpha)drds+\nu t,
+\end{equation}
+where $M_t^\alpha$ is an $\alpha$-stable motion (a strictly symmetric $\alpha$-stable L\'{e}vy motion) on $\mathbb{R} (0<\alpha<2)$, $\theta \neq 0$ and $\nu \in \mathbb{R}$. Some related interesting questions are considered in the future papers such as parameter estimations and their asymptotic behaviors. 
+
+The structure of this paper includes three sections. In Section 2, we briefly recall $\alpha$-stable L\'{e}vy process and It\^{o}-type stochastic integral with respect to it. In Section 3, we consider the case $\theta>0$. When $1<\alpha<2$ and $M^\alpha$ have no postive jumps, we show that there exists $\kappa$ depending only on $\alpha$ such that
+$$
+\limsup_{t\rightarrow \infty}\frac{1}{(t\log t)^{1-\frac{1}{\alpha}}}\int_0^t \left(X_t^\alpha-X_s^\alpha\right)ds=\kappa\qquad \text{a.s.}
+$$
+and the convergence (law of large numbers)
+$$
+\frac{1}{T}\int_0^T Y_t^\alpha dt\longrightarrow\frac{\nu}{\theta}
+$$
+almost surely and in $L^p$ with $0<p<\alpha$, as $T$ tends to infinty, where $Y^\alpha_t=\int_0^t(X_t^\alpha-X_s^\alpha)ds$.
+
+In Section 4, we consider the case $\theta<0$. However, when $\theta<0$, we have
+$$
+\frac{1}{T}\int_0^T Y_t^\alpha dt\longrightarrow \infty
+$$
+in probability, as $T$ tends to infinity. Therefore, for $\frac{1}{2}<\alpha<2$, we show that the following convergence hold: 
+When $\theta<0$, we have
+\begin{equation*}
+\begin{aligned}
+&\Lambda_t^\alpha: = e^{\frac{1}{2}\theta t^2}Y_t^\alpha \longrightarrow \xi_\infty^\alpha-\frac{\nu}{\theta}\\
+&\Xi_t^\alpha :=te^{\frac{1}{2}\theta t^2}\int_0^t Y_t^\alpha dt\longrightarrow \frac{1}{\theta}\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)
+\end{aligned}
+\end{equation*}
+almost surely and in $L^p$ with $0<p<\alpha$, where $\xi_\infty^\alpha=\int_0^\infty se^{\frac{1}{2}\theta s^2}dM_s^\alpha$.
+
+\section{\textsc{Preliminaries}}
+In this section, we will recall the definition and some basic facts of $\alpha$-stable motion and the definition and properties of It\^{o}-type stochastic integral for $\alpha$-stable motion on $\mathbb{R}$. Concerning more notions and background, we can refer to Rosinski and Woyczynski\cite{Rosinski}, Kallenberg\cite{Kallenberg}, Applebaum\cite{Applebaum}, Samorodnitsky and Taqqu\cite{Samorodnitsky}, and Sato\cite{Sato}.
+
+\subsection{$\alpha$-stable L\'{e}vy process}
+Throughout this paper we define a complete probability space ($\Omega,\mathcal{F},P,\{\mathscr{F}_t\}$) such that the processes are well-defined on the space. For simplicity we let $C_{(\cdot)}$ be a postive constant depending only on its subscripts and its value may be different under different conditions, and this assumption is also adaptable to $c_{(\cdot)}$.
+
+Assume four parameters $\alpha,\lambda,\beta,\mu$ satisfying 
+$$
+\alpha \in(0,2],\quad \lambda \in(0,+\infty),\quad \beta\in[-1,1],\quad \mu\in(-\infty,+\infty),
+$$
+and denote
+\begin{equation*}
+\phi_\alpha(u) =
+\begin{cases}
+-\lambda^\alpha|u|^\alpha(1-i\beta \text{sgn}(u)\tan\frac{\alpha\pi}{2})+i\mu u, & \alpha \neq 1 ,\\
+-\lambda|u|(1+i\beta\frac{2}{\pi} \text{sgn}(u)\log|u|)+i\mu u,&\alpha =1,\\
+\end{cases}
+\end{equation*}
+where $u\in(-\infty,+\infty)$, $i^2=-1$. A random variable $\eta$ subjects to an $\alpha$-stable distribution, denoted by $\eta \sim \mathcal{S}_\alpha(\lambda,\beta,\mu)$, if it has the characteristic form
+\begin{equation*}
+E(e^{iu\eta})=e^{-\phi_\alpha(u)},
+\end{equation*}
+These parameters $\alpha,\lambda,\beta,\mu$ are called the stability index, scale one, skewness one, and location one, respectively. When $\mu=0$, we may call $\eta$ to be strictly $\alpha$-stable, and if $\beta=0$ additionally, we may call $\eta$ previously to be symmetrically $\alpha$-stable. 
+
+An $\{\mathscr{F}_t\}$-adapted process $M^\alpha = \{M_t^\alpha, t \geq 0\}$ with all sample paths in $D[0,\infty)$ could be an $\alpha$-stable motion (an $\alpha$-stable L\'{e}vy process) with $\alpha \in (0,2]$, if for any $t>s\geq 0$, we have 
+$$
+E\left[e^{-iu(M^\alpha_t-M^\alpha_s)}|\mathscr{F}_s\right]=e^{-(t-s)\phi _\alpha(u)},\quad  u\in \mathbb{R},
+$$
+where $\phi _\alpha(u)$ is called the L\'{e}vy symbol of $M^\alpha$. In this paper, we assume that the $\alpha$-stable motion $M^\alpha$ is strictly symmetric (namely $\mu=\beta=0$ and $\lambda=1$), i.e. $\phi_\alpha(u)=|u|^\alpha$.
+
+\subsection{It\^{o}-type stochastic integral for $\alpha$-stable L\'{e}vy process}
+In this part, we recall the definition and properties of It\^{o}-type stochastic integral for $\alpha$-stable L\'{e}vy process\cite{Protter}
+$$
+A_t^\alpha = \int_0^t F_s dM_s^\alpha, \quad t\geq 0,
+$$
+where $F=\{F(t,\omega)\}_{t\geq 0}$ is an adapted $\{\mathscr{F}_t\}$ process on $\Omega[0,\infty)$ and $M^\alpha$ is an $\alpha$-stable motion (strictly symmetric, $\lambda=1$). If for every $T>0$, we have 
+$$
+F\in L^\alpha_{a.s} = \left\{F: \{\mathscr{F}_t\}-\text{adapted}|\int_0^T|F_t|^\alpha dt<\infty,a.s.\forall T>0 \right\},
+$$
+almost surely, the stable stochastic integral exists for $\alpha \in (0,2)$. In general, $F=\{F(t,w)\}_{t\geq 0}$ has the form as follows
+$$
+F(t,\omega):=\varphi_0(\omega)\mathbbm{1}_{\{t=0\}}(t)+\sum_{i=0}^\infty\varphi_i(\omega)\mathbbm{1}_{(t_i,t_{i+1}]}(t),
+$$
+where $0=t_0<t_1<\cdots<t_n<\cdots\rightarrow\infty$ and $\varphi_n$ is $\mathscr{F}_{t_n}$ measurable for every $n=0,1,2\cdots$. The stochastic integral with respect to $F$ could be defined:
+\begin{equation*}
+\begin{aligned}
+\int_0^tF(s,\omega)dM^\alpha(s,\omega)=&\sum_{i=0}^{n-1}\varphi_i(\omega)(M^\alpha(t_{i+1},\omega)-M^\alpha(t_i,\omega))\\
+&+\varphi_n(\omega)(M^\alpha(t,\omega)-M^\alpha(t_n,\omega))
+\end{aligned}
+\end{equation*}
+where $t_n\leq t\leq t_{n+1},n=0,1,2\cdots$. Moreover, the following estimates holds:
+\begin{equation}\label{sec2-eq1}
+c_\alpha\int_0^T E[|F_s|^\alpha]ds\leq\sup_{\lambda>0}\lambda^\alpha P\left(\sup_{0\leq t \leq T} \left|\int_0^t F_sdM_s^\alpha\right|\geq \lambda\right)\leq C_\alpha\int_0^T E[|F_s|^\alpha]ds
+\end{equation}
+for all $T\geq 0$. The left-hand side of the inequalities is established in Rosinski-Woyczynski\cite{Rosinski} and the right-hand side of the ones is considered in Gin\'{e}-Marcus\cite{Gine}
+
+\begin{theorem}[Rosinski-Woyczynski\cite{Rosinski}]
+Let $0<\alpha<2$ and for any $F\in L^\alpha_{a.s}$, we define
+$$
+\tau_\alpha(u) =\int_0^u |F_t|^\alpha dt.
+$$
+such that $\tau_\alpha(u)$ tends to infinity almost surely, as $u$ tends to infinity. Denote $\tau_\alpha^{-1}(t)=\inf\{u:\tau_\alpha(u)>t\}$ and $\mathscr{A}_t=\mathscr{F}_{\tau_\alpha^{-1}(t)}$. The time-changed stochastic integral
+$$
+\widetilde{M}_t^\alpha=\int_0^{\tau_\alpha^{-1}(t)}F_sdM_s^\alpha
+$$
+is an $\{\mathscr{F}_t\}$-$\alpha$ stable motion on $\mathbb{R}$. Consequently, for each $t>0$, we have 
+$$
+\widetilde{M}^\alpha_{\tau_\alpha(t)}=\int_0^tF_sdM_s^\alpha
+$$
+almost surely. 
+\end{theorem}
+
+\section{\textsc{Law of large numbers, self-attracting case}}
+Throughout this paper, we assume that $M^\alpha$ is a strictly symmetric $\alpha$-stable motion with $\alpha \in (0,2)$, $\theta \neq 0, \nu \in \mathbb{R}$. In this section, we consider the convergence of the solution of the equation
+\begin{equation}\label{sec3-eq1}
+X_t^\alpha = M_t^\alpha -\theta \int_0^t\int_0^s (X_s^\alpha - X_r^\alpha) dr ds +\nu t,
+\end{equation}
+where $\theta > 0,\nu \in \mathbb{R}$ and $M^\alpha$ is an $\alpha$-stable motion on $\mathbb{R}$ ($0<\alpha<2$) with $M^\alpha_0=0$.
+
+We introduce the kernel function $(t,s)\mapsto h_\theta (t,s)$ by
+\begin{equation}\label{sec3-eq2}
+h_\theta(t,s) =
+\begin{cases}
+1-\theta s e^{\frac{1}{2}\theta s^2}\int_s^t e^{-\frac{1}{2}\theta u^2} du, &\quad t \geq s,\\
+0 , &\quad t<s,\\
+\end{cases}
+\end{equation}
+for any $s,t \geq 0$. The kernel function $(t,s)\mapsto h_\theta (t,s)$ has the following properties
+
+(1)When $\theta >0$, the limit
+\begin{equation*}
+h_\theta (s):= \lim_{t\rightarrow \infty}h_\theta(t,s)=1-\theta se^{\frac{1}{2}\theta s^2}\int_s^\infty e^{-\frac{1}{2}\theta u^2}du
+\end{equation*}
+exists for all $s \geq 0$; when $\theta <0$, we have the limit
+\begin{equation}
+\lim_{t\rightarrow \infty} \left(te^{\frac{1}{2}\theta t^2}h_\theta(t,s)\right)=se^{\frac{1}{2}\theta s^2}
+\end{equation}
+for any $s \geq 0$.
+
+(2) When $\theta >0$, we have $h_\theta (s) \leq h_\theta (t,s)$ and 
+\begin{equation}
+e^{-\frac{1}{2}\theta(t^2-s^2)}\leq h_\theta (t,s) \leq 1
+\end{equation}
+for all $t\geq s\geq 0$. Moreover, we also have 
+\begin{equation*}
+0 \leq h_\theta (s) \leq  C_\theta \min \left\{1,\frac{1}{s^2}\right\}
+\end{equation*}
+for all $s\geq 0$.
+
+(3) When $\theta <0$, we have
+\begin{equation*}
+1 \leq h_\theta (t,s) \leq e^{-\frac{1}{2}\theta(t^2-s^2)} 
+\end{equation*}
+for all $t \geq s \geq 0$.
+
+(4) When $\theta \neq 0$, we have 
+\begin{equation*}
+h_\theta (t,0)=h_\theta (t,t)=1,\quad \int_u^t h_\theta (t,s)ds = e^{\frac{1}{2}\theta u^2 }\int_u^t  e^{-\frac{1}{2}\theta s^2} ds.
+\end{equation*}
+for all $t \geq u \geq 0$.
+
+Using the kernel function $(t,s)\mapsto h_\theta (t,s)$, we can simply show that the solution of (\ref{sec3-eq1}) admits the following representation form when $t \geq 0$:
+\begin{equation}\label{sec3-eq9}
+X_t^\alpha = \int_0^t h_\theta(t,s)dM^\alpha_s+\nu \int_0^t h_\theta (t,s)ds.
+\end{equation}
+By the method of constant variation (see Cranston and Le Jan\cite{Cranston}), we could introduce the above representation. Spontaneously, we could also prove this through the integration by part. Therefore, we only need to check that the process $X^\alpha$ defined by (\ref{sec3-eq9}) is the solution of (\ref{sec3-eq1}), because it is obvious to show that the solution (\ref{sec3-eq1}) is unique. Noting that
+\begin{equation*}
+\begin{aligned}
+X_t^\alpha &= \int_0^t h_\theta(t,s)dM^\alpha_s+\nu \int_0^t h_\theta (t,s)ds\\
+& = \int_0^t \left(1-\theta s e^{\frac{1}{2}\theta s^2}\int_s^t e^{-\frac{1}{2}\theta u^2} du\right)dM_s^\alpha+\nu \int_0^t e^{-\frac{1}{2}\theta u^2}du\\
+& = M_t^\alpha - \theta \int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha\int_s^t e^{-\frac{1}{2}\theta u^2}du+\nu \int_0^t h_\theta (t,s)ds\\
+& = M_t^\alpha - \int_0^t e^{-\frac{1}{2}\theta u^2} \left(\int_0^u \theta se^{\frac{1}{2}\theta s^2}dM_s^\alpha \right)du+ \nu\int_0^t e^{-\frac{1}{2}\theta u^2}du \\
+& = M_t^\alpha - \int_0^t e^{-\frac{1}{2}\theta u^2} \left(\int_0^u \theta se^{\frac{1}{2}\theta s^2}dM_s^\alpha -\nu \right)du
+\end{aligned}
+\end{equation*}
+for all $t \geq 0$, we see that the process $X_\alpha$ defined by (\ref{sec3-eq9}) is the solution of (\ref{sec3-eq1}) if and only if for all $ t \geq u \geq 0$, we have 
+\begin{equation}\label{sec2-eq12}
+Y_u^\alpha: = \int_0^u (X_u^\alpha - X_s^\alpha)ds =  e^{-\frac{1}{2}\theta u^2} \left(\int_0^u se^{\frac{1}{2}\theta s^2}dM_s^\alpha \right) +\frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta u^2}\right)
+\end{equation}
+In fact, through the integration by part
+\begin{equation*}
+\int_0^t s dM_s^\alpha = tM_t^\alpha - \int_0^t M_s^\alpha ds,
+\end{equation*}
+for any $t \geq 0$ and $\alpha \in (0,2]$, we have that 
+\begin{equation*}
+\begin{aligned}
+& Y_u =\int_0^u (X_u^\alpha - X_s^\alpha)ds = u X_u^\alpha -  \int_0^u X_s^\alpha ds\\
+& = u X_u^\alpha -\int_0^u \left(\int_0^s h_\theta (s,r) dM_r^\alpha + \nu \int_0^s h_\theta (s,r) dr \right)ds\\
+& =  u X_u^\alpha - \int_0^u \left(M_s^\alpha - \int_0^s \theta r e^{\frac{1}{2}\theta r^2 }\left(\int_r^s e^{-\frac{1}{2}\theta x^2 }dx \right) dM_r^\alpha +\nu \int_0^s e^{-\frac{1}{2}\theta x^2 }dx\right)ds\\
+& =  u X_u^\alpha -\int_0^u M_s^\alpha ds\\
+& \quad \quad +\int_0^u ds \int_0^s \theta r e^{\frac{1}{2}\theta r^2}\left(\int_r^s e^{-\frac{1}{2}\theta x^2}dx \right) dM_r^\alpha - \nu \int_0^u ds \int_0^s e^{-\frac{1}{2}\theta x^2}dx\\
+& =  uX_u^\alpha - uM_u^\alpha + \int_0^u sdM_s^\alpha\\
+& \quad \quad +\int_0^u e^{-\frac{1}{2}\theta x^2}\left(\int_0^x \theta r e^{\frac{1}{2}\theta r^2 }dM_r^\alpha \right)(u-x)dx -\nu \int_0^u e^{-\frac{1}{2}\theta x^2}(u-x)dx\\
+& = \int_0^u s dM_s^\alpha +u \left[X_u^\alpha -M_u^\alpha + \int_0^u e^{-\frac{1}{2}\theta x^2}\left(\int_0^x \theta r e^{\frac{1}{2}\theta r^2}dM_r^\alpha \right)dx -\nu \int_0^u e^{-\frac{1}{2}\theta x^2}dx\right]\\
+& \quad \quad - \int_0^u x e^{-\frac{1}{2}\theta x^2} \left(\int_0^x \theta r e^{\frac{1}{2}\theta r^2}dM_r^\alpha \right)dx + \frac{\nu}{\theta} \left(1 - e^{-\frac{1}{2}\theta u^2}\right)\\
+& = \int_0^u s dM_s^\alpha - \int_0^u x e^{-\frac{1}{2}\theta x^2} \left(\int_0^x \theta r e^{\frac{1}{2}\theta r^2}dM_r^\alpha \right)dx + \frac{\nu}{\theta} \left(1 - e^{-\frac{1}{2}\theta u^2}\right) \\
+& = \int_0^u s dM_s^\alpha  - \int_0^u r e^{\frac{1}{2}\theta r^2}dM_r^\alpha \int_r^u \theta x e^{-\frac{1}{2}\theta x^2} dx + \frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta u^2} \right)\\
+& = e^{-\frac{1}{2}\theta u^2} \left(\int_0^u r e^{\frac{1}{2}\theta r^2}dM_r^\alpha  \right)+\frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta u^2} \right) \\
+\end{aligned}
+\end{equation*}
+
+For all $t \geq u \geq 0$, the formula (\ref{sec2-eq12}) needs to be checked as follows.
+\begin{lemma}[(X. Sun and L. Yan\cite{Yan2})]
+Let $F=\{F_s,s\geq 0 \}$ be a continuous adapted process belonging to $L^\alpha$. Define the process A by
+\begin{equation*}
+A_t = \int_{1/t}^\infty |F_s|^\alpha ds
+\end{equation*}
+with $A_0=0$. Let $\mathscr{F}_t'=\sigma(M_s^\alpha,s \geq \frac{1}{t})$, where$\mathscr{F}_0'=\{\emptyset,\Omega\}$. If $A_t^{-1}=\inf\{u:A_u>t\}$ and $\mathscr{A}_t=\mathscr{F}_{\mathscr{A}^{-1}_t}'$, the time-changed stochastic integral
+$$
+\widetilde{M}_t^\alpha=\int_{1/A_t^{-1}}^\infty F_sdM_s^\alpha
+$$
+is an $\{\mathscr{A}_t\}$-$\alpha$-stable motion. Therefore, for each $t>0$, we have 
+\begin{equation*}
+N_t:=\int_{1/t}^\infty F_sdM_s^\alpha=\widetilde{M}_{A_t}^\alpha,\quad t>0
+\end{equation*}
+almost surely, with $N_0=0$.
+\end{lemma}
+
+\begin{proof}
+Similar to Rosinski and Woyczynski\cite{Rosinski}, one can prove the lemma.
+\end{proof}
+
+As a corollary of Lemma 3.1, we have
+\begin{equation}\label{sec3-eq12}
+c_\alpha\int_T^\infty E[|F_s|^\alpha]ds\leq\sup_{\lambda>0}\lambda^\alpha P\left(\sup_{T\leq t \leq \infty} \left|\int_0^t F_sdM_s^\alpha\right|\geq \lambda\right)\leq C_\alpha\int_T^\infty E[|F_s|^\alpha]ds
+\end{equation}
+for all $T>0$ and $0<\alpha<2$.
+
+\begin{lemma}
+Let $\alpha>1$ and $\alpha$-stable motion $M^\alpha$ have no postive jumps. Therefore, there exists $\kappa>0$ depending only on $\alpha$ and $\theta$, such that
+\begin{equation}\label{sec3-eq13}
+\limsup_{t\rightarrow \infty}\frac{1}{(t\log t)^{1-\frac{1}{\alpha}}}\int_0^t \left(X_t^\alpha-X_s^\alpha\right)ds=\kappa
+\end{equation}
+almost surely.
+\end{lemma}
+
+\begin{proof}
+Denote $Y_t^\alpha:=\int_0^t \left(X_t^\alpha-X_s^\alpha\right)ds$. We can get the equivalent decomposition of $Y_t^\alpha$ by the formula (\ref{sec2-eq12}):
+\begin{equation*}
+Y_t^\alpha =  e^{-\frac{1}{2}\theta t^2} \left(\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha \right) +\frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta t^2}\right)=\Lambda_1+\Lambda_2.
+\end{equation*}
+The lemma can be proven in two steps.
+\textbf{(I)} Let us study the convergence in probability of $\Lambda_1$. When $t>0$, we could denote
+$$
+\tau_\alpha(t):=\int_0^t s^\alpha e^{\frac{1}{2}\theta \alpha s^2 }ds.
+$$
+Theorem 2.1 admits that the $\alpha$-stable motion
+$$
+\widetilde{M}_t^\alpha:=\int_0^{\tau_\alpha^{-1}(t)}se^{\frac{1}{2}\theta s^2}dM_s^\alpha,\quad t\geq 0
+$$
+has no postive jumps. Therefore, we have
+$$
+\widetilde{M}_{\tau_\alpha(t)}^\alpha:=\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha,\quad t\geq 0.
+$$
+almost surely, for each $t>0$. Applying the law of iterated logarithm\cite{Breiman}: there exists some positive constant $c>0$ such that 
+\begin{equation}\label{sec3-eq14}
+\limsup_{t\rightarrow\infty}\frac{M_t^\alpha}{t^{\frac{1}{\alpha}}(\log\log t)^{1-\frac{1}{\alpha}}}=c
+\end{equation}
+as $t$ tends to infinty, we can obtain
+\begin{equation*}
+\begin{aligned}
+&\quad\limsup_{t\rightarrow \infty}\frac{1}{(t\log t)^{1-\frac{1}{\alpha}}}\Lambda_1 =\limsup_{t\rightarrow\infty}\frac{e^{-\frac{1}{2}\theta t^2}}{(t\log t)^{1-\frac{1}{\alpha}}}\left(\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right)\\
+&=c \limsup_{t\rightarrow \infty}\frac{\tau_\alpha(t)^{\frac{1}{\alpha}}(\log\log \tau_\alpha(t))^{1-\frac{1}{\alpha}}}{(t\log t)^{1-\frac{1}{\alpha}}e^{\frac{1}{2}\theta t^2}}\\
+& =c \limsup_{t\rightarrow\infty}\left(\frac{\tau_\alpha(t)}{t^{\alpha-1}e^{\frac{1}{2}\alpha\theta t^2}}\right)^{\frac{1}{\alpha}}\limsup_{t\rightarrow\infty}\left(\frac{\log\log \tau_\alpha(t)}{\log t}\right)^{1-\frac{1}{\alpha}}\\
+& \xlongequal{\text{L'H\^{o}pital's rule}} c\limsup_{t\rightarrow\infty}\left(\frac{t^\alpha e^{\frac{1}{2}\theta \alpha t^2}}{\alpha \theta t^\alpha e^{\frac{1}{2}\theta \alpha t^2 }}\right)^{\frac{1}{\alpha}}\limsup_{t\rightarrow\infty}\left(\frac{t^{\alpha+1} e^{\frac{1}{2}\theta \alpha t^2}}{\log \tau_\alpha (t)\tau_\alpha(t)}\right)^{1-\frac{1}{\alpha}}\\
+&=c\left(\frac{1}{\alpha\theta}\right)^{\frac{1}{\alpha}}\limsup_{t\rightarrow\infty}\left(\frac{\alpha \theta t^2}{1+\log \tau_\alpha(t)}\right)^{1-\frac{1}{\alpha}}\\
+& = c\left(\frac{1}{\alpha\theta}\right)^{\frac{1}{\alpha}}2^{1-\frac{1}{\alpha}},
+\end{aligned}
+\end{equation*}
+
+\textbf{(II)} When $t>0$, we have the following limit:
+\begin{equation*}
+\begin{aligned}
+&\quad\limsup_{t\rightarrow \infty}\frac{1}{(t\log t)^{1-\frac{1}{\alpha}}}\Lambda_2 =\limsup_{t\rightarrow \infty}\frac{\frac{\nu}{\theta}}{(t\log t)^{1-\frac{1}{\alpha}}}\left(1-e^{-\frac{1}{2}\theta t^2}\right)\\
+&=-\frac{\nu}{\theta}\limsup_{t\rightarrow\infty}\frac{1}{e^{\frac{1}{2}\theta t^2}(t\log t)^{1-\frac{1}{\alpha}}}=0.
+\end{aligned}
+\end{equation*}
+
+Thus, we have proved the Lemma by the convergence mentioned above.
+\end{proof}
+
+\begin{lemma}
+Let $1<\alpha<2$, there exists $\beta>\frac{1}{\alpha}$ (in particular, when $\alpha=2$, we can denote $\beta=1$) such that
+\begin{equation}\label{sec3-eq15}
+\frac{M_T^\alpha}{T^\beta}\longrightarrow 0\qquad\text{a.s.}
+\end{equation}
+as t tends to infinity.
+\end{lemma}
+
+\begin{proof}
+This is a simple exercise. Applying the estimate (\ref{sec2-eq1}) and the fact $M_t^\alpha : = \int_0^t 1dM_s^\alpha$, we can obtain that for any $\varepsilon>0$,
+\begin{equation*}
+\begin{aligned}
+P\left(\sup_{t\geq T}\left|\frac{M_t^\alpha}{t^\beta}\right|\geq \varepsilon\right)&\leq P\left(\frac{1}{T^\beta}\sup_{t\geq T}\left|\int_0^t 1dM_s^\alpha\right|\geq \varepsilon\right) \leq C_\alpha\varepsilon^{-\alpha}\left(\frac{1}{T^\beta}\right)^\alpha\left(\int_0^T 1^\alpha ds\right)\\
+&\sim C_{\alpha}\varepsilon^{-\alpha}\frac{1}{T^{\alpha\beta-1}}\longrightarrow 0\quad(T\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+as $t$ tends to infinity.
+\end{proof}
+
+\begin{lemma}
+Let $1<\alpha<2$, $\theta>0$ and $\alpha$-stable motion $M^\alpha$ have no postive jumps. When $t>0$, we have
+\begin{equation}\label{sec3-eq16}
+\frac{1}{t^{3-\frac{2}{\alpha}}}Y_t^\alpha =\frac{1}{t^{3-\frac{2}{\alpha}}} \int_0^t (X_u-X_t)du\longrightarrow 0
+\end{equation}
+almost surely, as $t$ tends to infinity.
+\end{lemma}
+\begin{proof}
+For all $t\geq 0$, denoting $\Delta_t=\frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta t^2}\right)$ and
+$$
+\eta_t=e^{-\frac{1}{2}\theta t^2}\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha,
+$$
+we have $Y_t^\alpha=\eta_t+\Delta_t$ and
+\begin{equation*}
+\begin{aligned}
+\frac{1}{t^{3-\frac{2}{\alpha}}}Y_t^\alpha=\frac{1}{t^{3-\frac{2}{\alpha}}}(\eta_t+\Delta_t)=\frac{1}{t^{3-\frac{2}{\alpha}}}\eta_t+\frac{1}{t^{3-\frac{2}{\alpha}}}\Delta_t:=A_{1t}+A_{2t}.
+\end{aligned}
+\end{equation*}
+For one thing, applying the L'H\^{o}pital rule and the estimate (\ref{sec2-eq1}), we can show that $A_{1t}$ converges to zero almost surely, as $t$ tends to infinity. For any $\varepsilon>0$, we have 
+\begin{equation*}
+\begin{aligned}
+P\left(\sup_{t\geq T}\left|A_{1t}\right|\geq \varepsilon\right)&=P\left(\sup_{t\geq T}\left|\frac{1}{t^{3-\frac{2}{\alpha}}}e^{-\frac{1}{2}\theta t^2}\int_0^tse^{\frac{1}{2}\theta s^2}dM_s^\alpha\right|\geq \varepsilon\right)\\
+&\leq P\left(\frac{1}{T^{3-\frac{2}{\alpha}}}e^{-\frac{1}{2}\theta T^2}\sup_{t\geq T}\left|\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right|\geq \varepsilon\right)\\
+&\leq C_\alpha \varepsilon^{-\alpha}\left(\frac{1}{T^{3-\frac{2}{\alpha}}e^{\frac{1}{2}\theta T^2}}\right)^\alpha\left(\int_0^T s^\alpha e^{\frac{1}{2}\alpha\theta s^2}ds\right)\\
+&\sim C_\alpha\varepsilon^{-\alpha}\frac{1}{\alpha\theta T^{3\alpha-1}e^{\frac{1}{2}\alpha\theta T^2}}\left(T^\alpha e^{\frac{1}{2}\alpha\theta T^2}\right)\\
+&=C_\alpha\varepsilon^{-\alpha}\frac{1}{\alpha\theta T^{2\alpha-1}}\longrightarrow0\quad(T\rightarrow\infty)\\
+\end{aligned}
+\end{equation*}
+For another thing, applying the estimate of $\Delta_t$ in Lemma 3.2, we can have 
+\begin{equation*}
+\begin{aligned}
+\lim_{t\rightarrow \infty}A_{2t}=\lim_{t\rightarrow \infty}\frac{1}{t^{3-\frac{2}{\alpha}}}\Delta_t=\lim_{t\rightarrow\infty}\frac{1}{t^{3-\frac{2}{\alpha}}}\frac{\nu}{\theta}\left(1-e^{-\frac{1}{2}\theta t^2}\right)=0
+\end{aligned}
+\end{equation*}
+as $t$ tends to infinity. 
+
+Thus, we have proved the Lemma by the almost surely convergence of $A_{1t}$ and $A_{2t}$.
+\end{proof}
+
+\begin{theorem}
+Let $1<\alpha<2$ and $\theta>0$. When $T>0$, we have
+\begin{equation}\label{sec3-eq17}
+\frac{1}{T}\int_0^T Y_t^\alpha dt\longrightarrow\frac{\nu}{\theta}
+\end{equation} 
+almost surely and in $L^p(0<p<\alpha)$, as $T$ tends to infinity.
+\end{theorem}
+
+\begin{proof}
+By the solution (\ref{sec3-eq9}) and (\ref{sec1-eq3}), for any $T \geq 0 $, we have 
+\begin{equation*}
+\begin{aligned}
+\left|\frac{1}{T}\int_0^T Y_t^\alpha dt-\frac{\nu}{\theta}\right|&=\frac{1}{\theta }\left|\frac{M_T^\alpha}{T}-\frac{X_T^\alpha}{T}\right|\\
+&=\frac{1}{\theta}\left|\frac{M_T^\alpha}{T}-\frac{1}{T}\left(\int_0^T h_\theta(T,t)dM_t^\alpha+\nu\int_0^T h_\theta(T,t)dt\right)\right|\\
+&\leq \frac{1}{\theta }\left|\frac{M_T^\alpha}{T}\right|+\frac{1}{\theta}\left|\frac{1}{T}\int_0^T h_\theta(T,t)dM_t^\alpha\right|+\frac{\nu}{\theta}\left|\frac{1}{T}\int_0^T h_\theta(T,t)dt\right|\\
+&:=B_{1T}+B_{2T}+B_{3T}
+\end{aligned}
+\end{equation*}
+where it is obvious to show that $B_{1T}=\frac{1}{\theta }\left|\frac{M_T^\alpha}{T}\right|\longrightarrow0(T\rightarrow\infty)$ almost surely by the Lemma 3.3.
+
+For one thing, for any $\varepsilon>0$, we can have
+\begin{equation*}
+\begin{aligned}
+&\quad P\left(\sup_{t\geq T}\left|\frac{1}{t}\int_0^t h_\theta(t,s)dM_s^\alpha\right|\geq \varepsilon\right)\leq P\left(\frac{1}{T}\sup_{t\geq T}\left|\int_0^t h_\theta(t,s)dM_s^\alpha\right|\geq \varepsilon\right)\\
+&\leq C_\alpha\varepsilon^{-\alpha}\left(\frac{1}{T}\right)^\alpha\left(\int_0^T h_\theta(t,s)^\alpha ds\right)\leq C_\alpha\varepsilon^{-\alpha}\left(\frac{1}{T}\right)^\alpha\left(\int_0^T 1^\alpha ds\right)\\
+&=C_\alpha\varepsilon^{-\alpha}\frac{1}{T^{\alpha-1}}\longrightarrow 0 \qquad (T\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+
+Thus, we have shown that $B_{2T}$ convergences to zero almost surely, as $T$ tends to infinity.
+
+For another thing, we have
+\begin{equation*}
+\begin{aligned}
+B_{3T}=\frac{\nu}{\theta}\left|\frac{1}{T}\int_0^T h_\theta(T,t)dt\right|=\frac{\nu}{\theta}\left|\frac{1}{T}\int_0^T e^{-\frac{1}{2}\theta t^2} dt\right|\sim \frac{\nu}{\theta}e^{-\frac{1}{2}\theta T^2} \longrightarrow 0
+\end{aligned}
+\end{equation*}
+
+Finally, we can get the convergence (\ref{sec3-eq17}) in probability. Now, we consider the convergence in $L^p(0<p<\alpha)$. It is clear to see that for all $o<p<\alpha$, we have
+\begin{equation*}
+\begin{aligned}
+E|B_{1t}|^p&=E|\frac{1}{\theta t}M_t^\alpha|^p\sim \frac{1}{\theta^p t^p}E\left|\int_0^t 1dM_s^\alpha\right|^p \\
+&\leq C_{p,\alpha} \frac{1}{\theta^p t^p}\left (\int_0^t 1^\alpha ds\right)^{\frac{p}{\alpha}}=C_{p,\alpha}\frac{1}{\theta^p t^{p(1-\frac{1}{\alpha})}}\longrightarrow 0 \quad(t\rightarrow\infty).
+\end{aligned}
+\end{equation*}
+
+Similarly, we have that
+\begin{equation*}
+\begin{aligned}
+E|B_{2t}|^p&=\frac{1}{\theta^p}E\left|\frac{1}{t}\int_0^t h_\theta(t,s)dM_s^\alpha\right|^p\sim \frac{1}{\theta^p t^p}E\left(\int_0^t h_\theta(t,s)dM_s^\alpha\right)^p\\
+&\leq \frac{1}{\theta^p t^p}\left(\int_0^t h^\alpha_\theta(t,s) ds\right)^{\frac{p}{\alpha}}\leq \frac{1}{\theta^p t^{(1-\frac{1}{\alpha})p}}\longrightarrow 0(t\rightarrow \infty)
+\end{aligned}
+\end{equation*}
+converges in $L^p(0<p<\alpha)$, and we can get the Theorem 3.1 by the facts above finally.
+\end{proof}
+
+\begin{cor}
+Let $1<\alpha<2$ and $\theta>0$, we can have 
+\begin{equation}\label{sec3-eq18}
+\frac{1}{T^{4-\frac{2}{\alpha}}}\int_0^T Y_t^\alpha dt\longrightarrow0\quad(T\rightarrow\infty)
+\end{equation}  
+almost surely and in $L^p(0<p<\alpha)$, as $T$ tends to infinity.
+\end{cor}
+
+\begin{proof}
+This is a simple exercise. It is obvious to show the equation (\ref{sec3-eq18}) in the corollary  by applying the Lemma 3.4 and Theorem 3.1.
+\end{proof}
+
+\section{\textsc{Law of large numbers, self-repelling case}}
+When $\theta<0$ and $\alpha>0$, we have
+$$
+\frac{1}{T}\int_0^T Y_t^\alpha dt \longrightarrow \infty
+$$
+as $T$ tends to infinity, namely, the original law of large numbers is not suitable for this situation. Therefore, in this section, when we discuss the convergence in probability and in $L^p(0<p<\alpha)$ of $Y_t^\alpha$ and $\int_0^t Y_t^\alpha dt$ under the self-repelling case, we need to change the original convergence. Let $X^\alpha$ be the solution of (\ref{sec1-eq3}) with $\theta<0$. We have
+$$
+X_t^\alpha=\int_0^t h_\theta(t,s)dM_s^\alpha+\nu\int_0^t h_\theta(t,s)ds,
+$$
+where the kernel function
+$$
+h_\theta(t,s):=1-\theta se^{\frac{1}{2}\theta s^2}\int_s^t e^{-\frac{1}{2}\theta u^2}du.
+$$
+
+\begin{lemma}
+Let $\theta<0$ and $0<\alpha\leq 2$. Define the process
+$$
+\xi_t^\alpha :=\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha,\quad t\geq 0.
+$$
+The process $\xi_t^\alpha$ converges to $\xi_\infty^\alpha$ almost surely and in $L^p(0<p<\alpha)$, as $t$ tends to infinity, where the random variable $\xi_\infty^\alpha:=\int_0^\infty se^{\frac{1}{2}\theta s^2}dM_s^\alpha$ is well-defined in $L^p (0<p<\alpha)$.
+\end{lemma}
+
+\begin{proof}
+Let $\theta<0$ and $0<\alpha\leq 2$. At first, we consider the almost surely convergence as $t$ tends to infinity. It is obvious that we have
+\begin{equation*}
+\begin{aligned}
+\xi_t^\alpha-\xi_\infty^\alpha&=\int_\infty^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha=te^{\frac{1}{2}\theta t^2}M_t^\alpha+\int_t^\infty(1+\theta s^2)e^{\frac{1}{2}\theta s^2}M_s^\alpha ds\\
+&:=\zeta_1(t)+\zeta_2(t)
+\end{aligned}
+\end{equation*}
+where based on the fact $M_t^\alpha\sim C_\alpha t^{\frac{1}{\alpha}}(t\rightarrow\infty)$, we have
+\begin{equation*}
+\begin{aligned}
+\zeta_1(t)=te^{\frac{1}{2}\theta t^2}M_t^\alpha=\frac{M_t^\alpha}{\frac{1}{t}e^{-\frac{1}{2}\theta t^2}}\sim C_\alpha\frac{t^{\frac{1}{\alpha}+1}}{e^{-\frac{1}{2}\theta t^2}}\longrightarrow 0\quad(t\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{aligned}
+\zeta_2(t)=\int_t^\infty(1+\theta s^2)e^{\frac{1}{2}\theta s^2}M_s^\alpha ds\sim C_\alpha\int_t^\infty (1+\theta s^2)e^{\frac{1}{2}\theta s^2}s^{\frac{1}{\alpha}}ds\longrightarrow 0 \quad(t\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+Now, we have proved that $\xi_t^\alpha$ converges to $\xi_\infty^\alpha$, as $t$ tends to infinity. And we consider the convergence in $L^p$ with $0<p<\alpha$.
+
+For one thing, when $t\geq 0$ and $0<p<\alpha$, we have
+$$
+E(|\xi_t^\alpha|^p)\leq C_{p,\alpha}\left(\int_0^t s^\alpha e^{\frac{1}{2}\alpha \theta s^2}ds\right)^{\frac{p}{\alpha}}\leq \left(\int_0^\infty s^\alpha e^{\frac{1}{2}\alpha\theta s^2}ds\right)^{\frac{p}{\alpha}}<\infty,
+$$
+and
+$$
+E(|\xi_t^\alpha-\xi_\infty^\alpha|^p)\leq C_{p,\alpha}\left(\int_t^\infty s^\alpha e^{\frac{1}{2}\alpha\theta s^2}ds\right)^{\frac{p}{\alpha}}\sim C_{p,\alpha,\theta}e^{\frac{1}{2}p\theta t^2}t^{(1-\frac{1}{\alpha})p}\longrightarrow 0 \quad(t\rightarrow \infty).
+$$
+
+Thus, we can obtain the Lemma 4.1 by those convergences.
+\end{proof}
+
+\begin{lemma}
+Let $\theta<0$, and define the funtion $I_\theta(t):\mathbb{R}^* \mapsto \mathbb{R}$:
+$$
+I_\theta(t):=te^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}du+\frac{1}{\theta},
+$$
+we have $I_\theta(t)$ converges to zero as $t$ tends to infinity.
+\end{lemma}
+
+\begin{proof}
+Given $\theta<0$, the function $t\mapsto I_\theta(t)$ has the convergence
+\begin{equation}
+\begin{aligned}
+\lim_{t\rightarrow \infty}I_\theta(t)t^2 & = \lim_{t\rightarrow \infty}\frac{1}{\theta}t^2 e^{\frac{1}{2}\theta t^2}\left(e^{-\frac{1}{2}\theta t^2}+\theta t \int_0^t e^{-\frac{1}{2}\theta u^2}du\right)\\
+&=\lim_{t\rightarrow \infty}\frac{1}{\theta}t^2 e^{\frac{1}{2}\theta t^2} \left(1-\int_0^t \theta ue^{-\frac{1}{2}\theta u^2}du+\theta  t \int_0^t e^{-\frac{1}{2}\theta u^2}du\right)\\
+& = \lim_{t\rightarrow \infty} t^2 e^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}(t-u)du\\
+& =\lim_{t\rightarrow \infty}- \frac{1}{\frac{1}{t}\theta e^{-\frac{1}{2}\theta t^2}} \int_0^t e^{-\frac{1}{2}\theta u^2}du\\
+& =\lim_{t\rightarrow \infty} \frac{1}{\theta^2 e^{-\frac{1}{2}\theta t^2}} e^{-\frac{1}{2}\theta t^2}=\frac{1}{\theta^2}
+\end{aligned}
+\end{equation}
+Therefore, we can obtain
+$$
+|I_\theta(t)|\leq \frac{1}{\theta^2} \min\left\{1,\frac{1}{t^2}\right\}\longrightarrow0\quad(t\rightarrow\infty).
+$$
+\end{proof}
+
+\begin{lemma}[X. Sun, L. Yan\cite{Yan2}]
+When $\frac{1}{2}<\alpha \leq 2$, a random variable $\int_0^\infty J_\theta(s)dM_s^\alpha$ is well-defined in $L^p$ with $0<p<\alpha$ and 
+\begin{equation}
+\int_0^t J_\theta(s)dM_s^\alpha\longrightarrow \int_0^\infty J_\theta(s)dM_s^\alpha
+\end{equation}
+almost surely and in $L^p$ with $0<p<\alpha$, as $t$ tends to infinity where 
+$$
+J_\theta(t)=-\theta te^{\frac{1}{2}t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}du-1.
+$$
+\end{lemma}
+
+\begin{remark}
+When we show the lemma above, as $t$ tends to infinity, for any $\theta<0,\frac{1}{2}<\alpha\leq 2$, denote
+$$
+\Psi_t:=\int_0^\infty I_\theta(s)dM_s^\alpha-\int_0^t I_\theta(s)dM_s^\alpha =\int_t^\infty I_\theta(s)dM_s^\alpha
+$$
+and $\Psi_t$ converges to zero almost surely. Recall the asymptotic structure of $t\mapsto I_\theta(t)$, we cannot prove the convergence in probability by (\ref{sec3-eq12}), but prove the lemma through the integration by part in Calculus.
+\end{remark}
+
+\begin{theorem}
+Let $\theta<0$ and $0<\alpha\leq 2$. The process
+$$
+\Lambda_t: = e^{\frac{1}{2}\theta t^2}Y_t^\alpha,\quad t\geq 0
+$$
+converges to $\xi_\infty^\alpha -\frac{\nu}{\theta}$ almost surely and in $L^p$ with $0<p<\alpha$, as $t$ tends to infinity, where $Y_t^\alpha =\int_0^t (X_t^\alpha-X_s^\alpha)ds$.
+\end{theorem}
+
+\begin{proof}
+Given $\theta<0$ and $0<\alpha\leq 2$, for all $t>0$ we have
+\begin{equation*}
+\begin{aligned}
+\Lambda_t^\alpha&=e^{\frac{1}{2}\theta t^2}Y_t^\alpha=e^{\frac{1}{2}\theta t^2}\left(e^{-\frac{1}{2}\theta t^2}\int_0^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha +\frac{\nu}{\theta}(1-e^{-\frac{1}{2}\theta t^2})\right)\\
+&=\int_0^t  se^{\frac{1}{2}\theta s^2}dM_s^\alpha +\frac{\nu}{\theta}\left(e^{\frac{1}{2}\theta t^2}-1\right)\\
+&=\xi_t^\alpha+\frac{\nu}{\theta}\left(e^{\frac{1}{2}\theta t^2}-1\right)
+\end{aligned}
+\end{equation*}
+Lemma 4.1 implies that $\xi_t^\alpha$ converges to $\xi_\infty^\alpha$ almost surely and in $L^p$ with $0<p<\alpha$. Therefore, we can obtain the Theorem 4.1 by the Lemma 4.1 and the fact that $e^{\frac{1}{2}\theta t^2}\rightarrow 0$, as $t$ tends to infinity. 
+\end{proof}
+
+\begin{theorem}
+Let $\theta<0$ and $0<\alpha\leq 2$. The process
+$$
+\Xi_t^\alpha :=te^{\frac{1}{2}\theta t^2}\int_0^t Y_t^\alpha dt,\quad t\geq 0
+$$
+converges to $\frac{1}{\theta}(\xi_\infty^\alpha-\frac{\nu}{\theta})$ almost surely and in $L^p$ with $0<p<\alpha$.
+\end{theorem}
+
+\begin{proof}
+Given $\theta<0$, for all $t>0$, we have 
+\begin{equation*}
+\begin{aligned}
+\Xi_t^\alpha&=te^{\frac{1}{2}\theta t^2}\int_0^t Y_t^\alpha dt=te^{\frac{1}{2}\theta t^2}\left(\int_0^t e^{-\frac{1}{2}\theta s^2}\int_0^s ue^{\frac{1}{2}\theta u^2}dM_u^\alpha ds+\int_0^t \frac{\nu}{\theta}(1-e^{-\frac{1}{2}\theta s^2})ds\right)\\
+&=te^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta s^2}\int_0^s ue^{\frac{1}{2}\theta u^2}dM_u^\alpha ds+\frac{\nu}{\theta}te^{\frac{1}{2}\theta t^2}\int_0^t (1-e^{-\frac{1}{2}\theta s^2})ds\\
+&=te^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}\xi_u^\alpha du +\frac{\nu}{\theta}t^2e^{\frac{1}{2}\theta t^2}-\frac{\nu}{\theta}te^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta s^2}ds
+\end{aligned}
+\end{equation*}
+and 
+\begin{equation*}
+\begin{aligned}
+\int_0^t &e^{-\frac{1}{2}\theta u^2}(\xi_u^\alpha-\xi_\infty^\alpha)du=\int_0^t e^{-\frac{1}{2}\theta u^2}\left(\int_\infty^u se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right)du\\
+&=\int_0^t e^{-\frac{1}{2}\theta u^2}\left(\int_\infty^t se^{\frac{1}{2}\theta s^2}dM_s^\alpha+\int_t^u se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right)du\\
+&=-\int_0^t se^{\frac{1}{2}\theta s^2}\left(\int_0^s e^{-\frac{1}{2}\theta u^2}du\right)dM_s^\alpha-\left(\int_0^t e^{-\frac{1}{2}\theta u^2}du\right)\left(\int_t^\infty se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right)\\
+&\equiv -(\zeta_1^\alpha(t)+\zeta_2^\alpha(t)).
+\end{aligned}
+\end{equation*}
+By the Lemma 4.1 and Lemma 4.2, for all $t>0$, we obtain
+\begin{equation*}
+\begin{aligned}
+\Xi_t^\alpha-\frac{1}{\theta}\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)&=te^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}(\xi_u^\alpha-\xi_\infty^\alpha)du+\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)I_\theta(t)+\frac{\nu}{\theta}t^2 e^{\frac{1}{2}\theta t^2}\\
+&=-te^{\frac{1}{2}\theta t^2}[\zeta_1^\alpha(t)+\zeta_2^\alpha(t)]+\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)I_\theta(t)+\frac{\nu}{\theta}t^2 e^{\frac{1}{2}\theta t^2}\\
+\end{aligned}
+\end{equation*}
+as $t$ tends to infinity. 
+
+Now, this will be done in two steps.
+
+\textbf{(I)} We need to consider the convergence in probability of $\Xi_t^\alpha$ at first. By the Lemma 4.3, for any $t>0$, when $0<\alpha\leq 2$, $t$ tends to infinity, we have
+\begin{equation*}
+\begin{aligned}
+te^{\frac{1}{2}\theta t^2}\zeta_1^\alpha(t)&=te^{\frac{1}{2}\theta t^2}\left(\int_0^t se^{\frac{1}{2}\theta s^2}\left(\int_0^s e^{-\frac{1}{2}\theta u^2}du\right)dM_s^\alpha\right)\\
+&=te^{\frac{1}{2}\theta t^2}\left[\left(I_\theta(t)-\frac{1}{\theta}\right)M_t^\alpha-\int_0^tI'_\theta(s)M_s^\alpha ds\right]
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\begin{aligned}
+I'_\theta(t)&=e^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}du+\theta t^2e^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}du+t\\
+&=e^{\frac{1}{2}\theta t^2}\left(\int_0^t e^{-\frac{1}{2}\theta u^2}du+\theta t^2\int_0^t e^{-\frac{1}{2}\theta u^2}du+te^{-\frac{1}{2}\theta t^2}\right)\\
+&= e^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}(1+\theta t^2-t\theta u)du+te^{\frac{1}{2}\theta t^2},
+\end{aligned}
+\end{equation*}
+According to the reference\cite{Yan2} by X. Sun and L. Yan, they applied the substitution $\frac{1}{2}\theta(t^2-u^2)=-x$ for the proof:
+$$
+e^{\frac{1}{2}\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}(1+\theta t^2-t\theta u)du \sim \frac{1}{\theta t}\int_0^{-\frac{1}{2}\theta t^2}e^{-x}(1-x)dx \sim \frac{1}{2}te^{\frac{1}{2}\theta t^2}
+$$
+Consequently, for all $\theta<0$, we have
+$$
+\lim_{t\rightarrow\infty}\frac{1}{t}e^{-\frac{1}{2}\theta t^2}I'_\theta(t)=\frac{3}{2}
+$$
+Considering the continuity of the function$t\mapsto I'_\theta(t)$, we can obtain
+$$
+|I'_\theta(t)|\leq \frac{3}{2} \min\left\{1,te^{\frac{1}{2}\theta t^2}\right\}.
+$$
+Therefore, it is obvious that
+$$
+te^{\frac{1}{2}\theta t^2}\zeta_1^\alpha(t)\longrightarrow 0 \quad (t\rightarrow \infty)
+$$
+almost surely.
+
+Next we can consider the convergence in probability of the process $te^{\frac{1}{2}\theta t^2}\zeta_2^\alpha(t)$:
+\begin{equation*}
+\begin{aligned}
+P\left(\sup_{t\geq T} \left|te^{\frac{1}{2}\theta t^2}\zeta_2^\alpha(t)\right|\geq \varepsilon \right)&\leq P\left(Te^{\frac{1}{2}\theta T^2}\int_0^T e^{-\frac{1}{2}\theta u^2}du\sup_{t\geq T} \left|\int_t^\infty se^{\frac{1}{2}\theta s^2 }dM_s^\alpha\right|\geq \varepsilon\right)\\
+& \leq C_\alpha \varepsilon^{-\alpha}T^\alpha e^{\frac{1}{2}\alpha \theta T^2}\left(\int_0^T e^{-\frac{1}{2}\theta s^2}ds\right)^\alpha \left(\int_T^\infty s^\alpha e^{\frac{1}{2}\alpha \theta s^2}ds \right)\\
+& \sim C_{\alpha,\theta}\varepsilon^{-\alpha} T^{\alpha-1}e^{\frac{1}{2}\alpha \theta T^2}\longrightarrow 0\quad (t\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+Therefore, combined with Lemma 4.2, the convergence $t^2e^{\frac{1}{2}\theta t^2}\rightarrow0$ and two convergences in probability above, we can obtain
+\begin{equation}
+\Xi_t^\alpha-\frac{1}{\theta}\left(\xi_\infty^\alpha-\frac{\nu}{\theta}\right)\longrightarrow 0
+\end{equation}
+almost surely.
+
+\textbf{(II)} Now we consider the convergence in $L^p$ with $0<p<\alpha$上的收敛性 and we discuss these processes $te^{\frac{1}{2}\theta t^2}\zeta_1^\alpha(t)$ and $te^{\frac{1}{2}\theta t^2}\zeta_2^\alpha(t)$.
+\begin{equation*}
+\begin{aligned}
+E\left|te^{\frac{1}{2}\theta t^2}\zeta_1^\alpha(t)\right|^p& \leq C_{\alpha,p}t^p e^{\frac{1}{2}\theta pt^2}E\left|\int_0^t se^{\frac{1}{2}\theta s^2}\left(\int_0^s e^{-\frac{1}{2}\theta u^2}du\right)dM_s^\alpha \right|^p\\
+&\leq C_{\alpha,p}t^p e^{\frac{1}{2}\theta pt^2}\left(\int_0^t s^\alpha e^{\frac{1}{2}\alpha \theta s^2}\left(\int_0^s e^{-\frac{1}{2}\theta u^2}du\right)^\alpha\right)^{\frac{p}{\alpha}}\\
+&\sim C_{\alpha,p,\theta}\left(t^{2\alpha-1}e^{\alpha\theta t^2}\int_0^t e^{-\frac{1}{2}\theta u^2}du\right)^{\frac{p}{\alpha}}\\
+&\sim C_{\alpha,p,\theta} \left(t^{2\alpha-2}e^{\frac{1}{2}\alpha\theta t^2}\right)^{\frac{p}{\alpha}}\longrightarrow 0\quad(t\rightarrow \infty),
+\end{aligned}
+\end{equation*}
+and
+\begin{equation*}
+\begin{aligned}
+E\left|te^{\frac{1}{2}\theta t^2}\zeta_2^\alpha(t)\right|^p &\leq t^p e^{\frac{1}{2}\theta pt^2}\left(\int_0^t e^{-\frac{1}{2}\theta u^2}du\right)^p E\left|\int_t^\infty se^{\frac{1}{2}\theta s^2}dM_s^\alpha\right|^p\\
+&\leq C_{p,\alpha,\theta} t^p e^{\frac{1}{2}\theta pt^2}\left(\int_0^t e^{-\frac{1}{2}\theta u^2}du\right)^p\left(\int_t^\infty s^\alpha e^{\frac{1}{2}\alpha \theta s^2}ds\right)^{\frac{p}{\alpha}}\\
+&\sim C_{p,\alpha,\theta}t^{(1-\frac{1}{\alpha})p}e^{\frac{1}{2}p\theta t^2}\longrightarrow 0 \quad (t\rightarrow\infty)
+\end{aligned}
+\end{equation*}
+Thus, we can get the convergence in probability and in $L^p(0<p<\alpha)$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{0}
+
+  \bibitem{Applebaum}
+  D. Applebaum, {\it L\'evy Processes and Stochastic Calculus}. Cambridge University Press 2004.
+  
+  \bibitem{Benaim}
+  M. Bena\"im, I. Ciotir and C.-E. Gauthier, Self-repelling diffusions via an infinite dimensional approach, {\em Stoch PDE: Anal. Comp.} {\bf 3} (2015), 506-530.
+  
+  \bibitem{Breiman}
+  L. Breiman, A delicate law of the iterated logarithm for non-decreasing stable processes, {\it Ann. Math. Statist.} {\bf 39} (1968), 1818-1824.
+  
+  \bibitem{Cranston}
+  M. Cranston and Y. Le Jan, Self-attracting diffusions: two case studies. {\it Math. Ann.} {\bf 303} (1995), 87-93.
+  
+  \bibitem{Cranston2}
+  M. Cranston and T. S. Mountford, The strong law of large numbers for a Brownian polymer, {\it Ann. Probab.} {\bf 24} (1996), 1300-1323.
+  
+  \bibitem{Durrett}
+  Durrett R. and Rogers L.C.G. (1991).  Asymptotic behavior of Brownian polymer. {\it Prob. Theory Rel. Fields} {\bf 92}, 337-349.
+  
+  \bibitem{Gan}
+  Y. Gan and L. Yan, Least squares estimation for the linear self-repelling diffusion driven by fractional Brownian motion (in Chinese), {\em Sci. CHINA Math.} {\bf 48} (2018), 1143-1158.
+  
+  \bibitem{Gauthier}
+  C.-E. Gauthier, Self attracting diffusions on a sphere and application to a periodic case, {\em Electron. Commun. Probab.} {\bf 21} (2016), No. 53, 1-12.
+  
+  \bibitem{Gine}
+  E. Gin\'e and M. B. Marcus, The central limit theorem for stochastic integrals with respect to L\'evy processes, {\it Ann. Prob.} {\bf 11} (1983), 58-77.
+  
+  \bibitem{Herrmann}
+  S. Herrmann and B. Roynette, Boundedness and convergence of some self-attracting diffusions, {\it Math. Ann.} {\bf 325} (2003), 81-96.
+  
+  \bibitem{Herrmann2}
+  S. Herrmann and M. Scheutzow, Rate of convergence of some self-attracting diffusions, {\it Stochastic Process. Appl.} {\bf 111} (2004), 41-55.
+  
+  \bibitem{Kallenberg}
+  O. Kallenberg, Some time change representations of stable integrals, via predictable transformations of local martingales. {\em Stoch. Process. Appl.} {\bf 40} (1992), 199-223.
+  
+  \bibitem{Kleptsyny}
+  V. Kleptsyny and A. Kurtzmann, Ergodicity of self-attracting motion, {\em Electron. J. Probab.} {\bf 17} (2012), 1-37.
+  
+  \bibitem{Mountford}
+  T. Mountford and P. Tarr\'es, An asymptotic result for Brownian polymers, {\it Ann. Inst. H. Poincar\'e Probab. Statist.}, {\bf 44} (2008), 29-46.
+  
+  \bibitem{Pemantle} 
+  Pemantle R. (1988). Phase transition in reinforced random walk and RWRE on trees. {\it Ann. Probab.} {\bf 16}, 1229-1241.
+  
+  \bibitem{Protter}
+  P. Protter, {\it Stochastic Integration and Differential Equations}, Springer, Berlin, Heidelberg and New York 2005.
+  
+  \bibitem{Rosinski}
+  J. Rosinski and W. A. Woyczynski, On It\^o stochastic integration with respect to $p$-stable motion: inner clock, integrability of sample paths, double and multiple integrals, {\it Ann. Prob.} {\bf 14} (1986), 271-286.
+  
+  \bibitem{Samorodnitsky}
+  G. Samorodnitsky, M. S. Taqqu, {\it Stable Non-Gaussian Random Processes}, Chapman $\And$ Hall 1994.
+  
+  \bibitem{Sato}
+  K. Sato, {\it L\'evy Processes and Infinite Divisibility}, Cambridge University Press 1999.
+  
+  \bibitem{Yan2}
+  X. Sun and L. Yan, Asymptotic Behavior on the Linear Self-Interacting diffusion driven by $\alpha$-Stable Motion, (2018).
+  
+  \bibitem{Chambeu}
+  S. Chambeu and A. Kurtzmann, Some particular self-interacting diffusions:
+  Ergodic behaviour and almost sure convergence, {\em Bernoulli} {\bf 17} (2011), 1248-1267.
+  
+  \bibitem{Werner}
+  B. T\'oth and W. Werner, The true self-repelling motion, {\it Probab. Theory Relat. Fields} {\bf 111} (1998), 375-452.
+  
+  \bibitem{Yan}
+  L. Yan, Y. Sun and Y. Lu, On the linear fractional self-attracting diffusion, {\it J. Theort. Probab.} {\bf 21} (2008), 502-516.
+  \end{thebibliography}
+\end{document}
